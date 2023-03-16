@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Userpage</title>
+    <link rel="icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-secondary bg-secondary">
+        <!-- <div class="navbar-brand">
+            <img src="" class="rounded-circle" alt="Logo" style="height: 050px;width: 50px;">
+        </div> -->
+        {% if user %}
+        <div class="container">
+            <h3 style="color: antiquewhite;">Welcome {{user}}</h3>
+        </div>
+        {% endif %}
+        <ul class="navbar-nav">
+            <li class="navbar-item"><button class="btn btn-dark"><a href="/{{user.username}}/" style="text-decoration: none; color: white;">Back</a></button></li>
+            <li class="navbar-item"><button class="btn btn-dark"><a href="/logout/" style="text-decoration: none; color: white;">logout</a></button></li>
+        </ul>
+    </nav>
+
+    <div>
+            
+        <div style="width: 50%; left: 0; position: absolute;">
+            <h4>User Details</h4>
+            <p>Username - {{user.username}}</p>
+            <p>Email - {{user.email}}</p>
+            <p>First Name - {{user.first_name}}</p>
+            <p>Last Name - {{user.last_name}}</p>
+        </div>
+        
+        <div style="width: 50%; right: 0; position: absolute;">
+            <h4>List of Questions Created</h4>
+            <ul>
+                {% for question in questions %}
+                    <li>{{question.question}}</li>
+                {% endfor%}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

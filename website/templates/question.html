@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question</title>
+    
+    <link rel="icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% if user.is_authenticated %}
+    
+    <header>
+        
+        <nav class="navbar navbar-expand-sm navbar-secondary bg-secondary">
+            <!-- <div class="navbar-brand">
+                <img src="" class="rounded-circle" alt="Logo" style="height: 050px;width: 50px;">
+            </div> -->
+            <div class="container">
+                <h3 style="color: antiquewhite;">Welcome user : {{user.username}}</h3>
+            </div>
+            <ul class="navbar-nav">
+                <li class="navbar-item"><button class="btn btn-dark"><a href="/logout/" style="text-decoration: none; color: white;">logout</a></button></li>
+                <li class="navbar-item"><button class="btn btn-dark"><a href="/{{user.username}}/" style="text-decoration: none; color: white;">Back</a></button></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div>
+        <!-- create questions  -->
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="question">Enter Your Question Here</label>
+            <textarea name="question" id="question" cols="100" rows="2" placeholder="Enter your question here" maxlength="1000" required></textarea>
+            <hr>
+            <label for="option1">Option 1</label>
+            <input type="text" name="option1" id="option1" maxlength="100" required>
+            <hr>
+            <label for="option2">Option 2</label>
+            <input type="text" name="option2" id="option2" maxlength="100" required>
+            <hr>
+            <label for="option3">Option 3</label>
+            <input type="text" name="option3" id="option3" maxlength="100" required>
+            <hr>
+            <label for="option4">Option 4</label>
+            <input type="text" name="option4" id="option4" maxlength="100" required>
+            <hr>
+            <label for="date">Date of Question Generation</label>
+            <input type="datetime-local" name="date" id="date" required>
+            <hr>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div>
+        {% if message %}
+            <p>{{message}}</p>
+        {% endif %}
+    </div>
+
+{% endif %}
+</body>
+</html>
